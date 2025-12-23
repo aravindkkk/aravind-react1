@@ -14,23 +14,12 @@ const Restaurant = () => {
     },[])
 
     const fetchMenu =  async () => {
-//   const res = await fetch(MENU_API_URL + resId);
 
-//   const result = await res.json();
+        const res = await fetch(MENU_API_URL + resId);
 
-//   console.log(res);
-
-console.log("ResId:", resId);
-
-  const res = await fetch(MENU_API_URL + resId);
-
-  if (!res.ok) {
-    throw new Response("Error", { status: res.status });
-  }
-
-  const text = await res.text();
-  const d =  text ? JSON.parse(text) : null;
-    console.log(res);
+       // const json = await res.json();
+       // setResInfo(json.data);
+          console.log(res);
 };
 
 
