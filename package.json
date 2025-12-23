@@ -17,16 +17,18 @@
   "author": "Aravind",
   "type": "commonjs",
   "scripts": {
-    "start":"parcel index.html",
-    "build":"parcel build index.html",
-    "test": "jest"
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest",
+    "editor.inlineSuggest.enabled": "false"
   },
   "devDependencies": {
     "parcel": "^2.16.3"
   },
   "dependencies": {
     "react": "^19.2.3",
-    "react-dom": "^19.2.3"
+    "react-dom": "^19.2.3",
+    "react-router-dom": "^6.30.2"
   },
   "browerslist": [
     "last 10 version"

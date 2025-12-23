@@ -1,4 +1,4 @@
-import { res_img_url } from "../utils.js/constants";
+import { res_img_url } from "../utils/constants";
 
 const ResCard = (props) => {
     const { resData } = props;
@@ -8,8 +8,8 @@ const ResCard = (props) => {
             cuisines,
             avgRating,
             costForTwo,
-            deliveryTime,
-        } = resData?.data;
+            sla,
+        } = resData?.info;
 
     return (
         <div className="res-card">
@@ -20,8 +20,8 @@ const ResCard = (props) => {
                 <h3>{name}</h3>
                 <h4>{cuisines.join(", ")}</h4>
                 <h4>{avgRating}Stars</h4>
-                <h4>₹{costForTwo / 100} For two</h4>
-                <h4>{deliveryTime}minutes</h4>
+                <h4>₹{costForTwo}</h4>
+                <h4>{sla?.slaString}</h4>
         </div>
     )
 }
