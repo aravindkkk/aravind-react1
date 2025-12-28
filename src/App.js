@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React, { lazy, Suspense, useContext, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
@@ -8,14 +8,43 @@ import Contact from "./Components/Contact";
 import About from "./Components/About";
 import Restarant from "./Components/Restaurant";
 import Error from "./Components/Error";
+import userContext from "./utils/UserContext";
+import appStore from "./utils/appStores";
+import { Provider } from "react-redux";
+
+
+//chunking
+//code splitting
+//demand loading
+//dynamic bundling
+//lazy loading
+//dynamic import
+
+const Cart = lazy(() => import("./Components/Cart"));
 
 function AppLayout() {
+    const [userName, setUserName] = useState([]);
+    const userContextName         = useContext(userContext);
+    useEffect(() => {
+        const data = {
+            name : "kamal Hassan",
+        }
+        setUserName(data.name);
+
+    }, []);
+
+
     return (
-        <div className="app">
+            <>
+            <Provider store={appStore}>
+            <userContext.Provider value={ { loggedInUser : userName ,setUserName } } >  
             <Header />
             <Outlet />
-        </div>
-    );
+            </userContext.Provider>
+            </Provider>
+            </>
+
+);
 };
 
 
@@ -38,7 +67,17 @@ const appRouter = createBrowserRouter([
     },
     {
         path: "/restarant/:resId",
-        element: <Restarant />,
+        element: (
+        <Restarant />
+    ),
+    },
+    {
+        path: "/cart",
+        element:(
+            <Suspense fallback={<div>Loading...</div>}>
+                <Cart />
+            </Suspense>
+        )
     },
     ],
     errorElement: <Error />,
