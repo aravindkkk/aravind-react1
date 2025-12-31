@@ -21,7 +21,7 @@ const Cart = () => {
           >Clear Cart</button>
          </span>
         {cartItems.map((item) => (
-        <div
+        <div data-testid="cartItems"
             key={item.id}
             className="p-2 m-2 border-gray-200 border-b-2 text-left flex justify-between"
           >

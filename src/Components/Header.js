@@ -22,7 +22,7 @@ const Header = () => {
                     <li className="px-4 hover:bg-slate-50 py-4 rounded-xl"><Link to="/about">About Us</Link></li>
                     <li className="px-4 hover:bg-slate-50 py-4 rounded-xl"><Link to="/contact">Contact Us</Link></li>
                      <li className="px-4 hover:bg-slate-50 py-4 rounded-xl font-bold text-xl">
-                        <Link to="/cart"><span>🛒({cartItems.length}🥢)</span></Link>
+                        <Link to="/cart"><span>Cart - ({cartItems.length} items)</span></Link>
                     </li>
                                 <li className="px-4 py-4 font-bold text-green-700 ">
                       {loggedInUser}

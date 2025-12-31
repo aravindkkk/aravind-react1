@@ -37,7 +37,9 @@ function Body() {
                 >Top Rate Restaurant</button>
                 <div><h1>loggedInUser : {loggedInUser}</h1></div>
                 <div className="Search m-4 p-4 flex items-center">
-                    <input type="text" 
+                    <input 
+                        type="text" 
+                        data-testid="searchInput"
                         value={searchText}
                         onChange={(e) => {setSearchText(e.target.value)}} 
                         onBlur={() => {
@@ -65,7 +67,7 @@ function Body() {
                 {
                 searchResListInfo.length === 0 ? <h2>No restaurant found</h2> : searchResListInfo.map((res) =>(
                <h1 key ={res.info.id} >
-                {res.info.veg ? <PromotedResCard resData={res} /> : <ResCard  resData={res} />}
+                {res.info.veg ? <PromotedResCard resData={res?.info} /> : <ResCard  resData={res?.info} />}
                 </h1>
                 ))}
             </div>

@@ -7,11 +7,14 @@ const ResCard = (props) => {
       const {
             cloudinaryImageId,
             name,
-            cuisines,
             avgRating,
             costForTwo,
             sla,
-        } = resData?.info;
+        } = resData;
+
+        const cuisines = resData?.info?.cuisines || [];
+
+
 
     const dispatch = useDispatch();  
     
@@ -21,18 +24,18 @@ const ResCard = (props) => {
     } ;
 
     return (
-        <div className="m-4 p-4 w-62.5 h-100 rounded-lg font-serif bg-gray-200 hover:bg-slate-300">
+        <div data-testid="resCard" className="m-4 p-4 w-62.5 h-100 rounded-lg font-serif bg-gray-200 hover:bg-slate-300">
                     <img
                     className="rounded-md"
                     alt="res-logo"
                     src={ res_img_url + cloudinaryImageId } />
                 <h3 className="font-bold py-2 text-lg">{name}</h3>
-                <h4>{cuisines.join(", ")}</h4>
+                <h3>{cuisines.join(", ")}</h3>
                 <h4>{avgRating}Stars</h4>
                 <h4>₹{costForTwo}</h4>
                 <h4>{sla?.slaString}</h4>
                 <button className="mt-2 p-2 bg-green-500 rounded-md text-white hover:bg-green-700 cursor-pointer"
-                onClick={() => addCartHandler(resData.info)}
+                onClick={() => addCartHandler(resData)}
                 >Add to Cart</button>
         </div>
     )

@@ -23,7 +23,7 @@ import { Provider } from "react-redux";
 const Cart = lazy(() => import("./Components/Cart"));
 
 function AppLayout() {
-    const [userName, setUserName] = useState([]);
+    const [userName, setUserName] = useState("Default");
     const userContextName         = useContext(userContext);
     useEffect(() => {
         const data = {
@@ -48,42 +48,48 @@ function AppLayout() {
 };
 
 
-const appRouter = createBrowserRouter([
-  {
-    path: "/",
-    element: <AppLayout />,
-    children: [
-     {
-        path: "/",
-        element: <Body />,
-    },   
+const appRouter = createBrowserRouter(
+  [
     {
-        path: "/contact",
-        element: <Contact />,
-    },
-    {
-        path: "/about",
-        element: <About />,
-    },
-    {
-        path: "/restarant/:resId",
-        element: (
-        <Restarant />
-    ),
-    },
-    {
-        path: "/cart",
-        element:(
+      path: "/",
+      element: <AppLayout />,
+      children: [
+        {
+          path: "/",
+          index: true,
+          element: <Body />,
+        },
+        {
+          path: "/contact",
+          element: <Contact />,
+        },
+        {
+          path: "/about",
+          element: <About />,
+        },
+        {
+          path: "/restarant/:resId",
+          element: <Restarant />,
+        },
+        {
+          path: "/cart",
+          element: (
             <Suspense fallback={<div>Loading...</div>}>
-                <Cart />
+              <Cart />
             </Suspense>
-        )
+          ),
+        },
+      ],
+      errorElement: <Error />,
     },
-    ],
-    errorElement: <Error />,
-  },
-  
-]);
+  ],
+  {
+    future: {
+      v7_relativeSplatPath: true, // ✅ this removes the warning
+    },
+  }
+);
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<RouterProvider router={appRouter} />);
